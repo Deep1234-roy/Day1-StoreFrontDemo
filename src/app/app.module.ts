@@ -13,7 +13,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import {MaterialExampleModule} from '../material.module';
 import { HeaderComponent } from './header/header.component';
 import { IndexComponent } from './index/index.component';
-import { SupportTicketComponent } from './support-ticket/support-ticket.component';
 import { FormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponentComponent } from './dialog-component/dialog-component.component';
@@ -22,7 +21,6 @@ import { DialogComponentComponent } from './dialog-component/dialog-component.co
     AppComponent,
     HeaderComponent,
     IndexComponent,
-    SupportTicketComponent,
     DialogComponentComponent
   ],
   imports: [
