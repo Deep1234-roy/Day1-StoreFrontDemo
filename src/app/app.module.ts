@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,18 +13,25 @@ import { MatDividerModule } from '@angular/material/divider';
 import {MaterialExampleModule} from '../material.module';
 import { HeaderComponent } from './header/header.component';
 import { IndexComponent } from './index/index.component';
+import { SupportTicketComponent } from './support-ticket/support-ticket.component';
+import { FormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponentComponent } from './dialog-component/dialog-component.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    IndexComponent
+    IndexComponent,
+    SupportTicketComponent,
+    DialogComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,MatTabsModule,BrowserAnimationsModule,MatFormFieldModule,
-    MatInputModule,MatDividerModule,MaterialExampleModule
+    MatInputModule,MatDividerModule,MaterialExampleModule,FormsModule,NgbModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -42,5 +42,92 @@
             </a>
         </div>
     </mat-tab>
-    <mat-tab label="Support Form">Support Form</mat-tab>
-</mat-tab-group>
+
+    <mat-tab label="Support Form">
+        <div class="search-supportHeader">
+            <p class="supportTicketNameStyle">{{supportTicketName}}</p>
+        </div>
+        <mat-tab-group (selectedTabChange)="onTabChange()">
+            <form #f="ngForm" name="form">
+                <mat-tab label="Navigate">
+                    <p class="search-form">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select</mat-label>
+                            <mat-select [(ngModel)]="NavigateData.category" name="navigatedropdown">
+                                <mat-option *ngFor="let option of Navigatecategories" value={{option.label}}>
+                                    {{option.label}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </p>
+
+                    <p class="search-form" *ngIf="NavigateData.category=='Other - Please Explain'">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Textarea</mat-label>
+                            <textarea [(ngModel)]="NavigateData.description" name="navigatedescArea"
+                                matInput></textarea>
+                        </mat-form-field>
+                    </p>
+
+                    <p><button mat-raised-button color="primary" class="search-btn" (click)="openDialogModal()" [disabled]="disableNavigateSubmitForm()">
+                            <p class="submitButton">Submit</p>
+                        </button></p>
+                </mat-tab>
+            </form>
+
+            <form #f="ngForm" name="form">
+                <mat-tab label="FindIt">
+                    <p class="search-form">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select</mat-label>
+                            <mat-select [(ngModel)]="FindItData.category" name="findItdropdown">
+                                <mat-option *ngFor="let option of FindItcategories" value={{option.label}}>
+                                    {{option.label}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </p>
+
+                    <p class="search-form" *ngIf="FindItData.category=='Other - Please Explain'">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Textarea</mat-label>
+                            <textarea [(ngModel)]="FindItData.description" name="findItdescArea" matInput></textarea>
+                        </mat-form-field>
+
+                    </p>
+
+                    <p><button mat-raised-button color="primary" class="search-btn" (click)="openDialogModal()" [disabled]="disableFindItSubmitForm()">
+                            <p class="submitButton">Submit</p>
+                        </button></p>
+                </mat-tab>
+            </form>
+
+            <form #f="ngForm" name="form">
+                <mat-tab label="ManageIt">
+                    <p class="search-form">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select</mat-label>
+                            <mat-select [(ngModel)]="ManageItData.category" name="manageItdropdown">
+                                <mat-option *ngFor="let option of ManageItcategories" value={{option.label}}>
+                                    {{option.label}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </p>
+
+                    <p class="search-form" *ngIf="ManageItData.category=='Other - Please Explain'">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Textarea</mat-label>
+                            <textarea [(ngModel)]="ManageItData.description" name="manageItdescArea"
+                                matInput></textarea>
+                        </mat-form-field>
+
+                    </p>
+
+                    <p><button mat-raised-button color="primary" class="search-btn" (click)="openDialogModal()" [disabled]="disableManageItSubmitForm()">
+                            <p class="submitButton">Submit</p>
+                        </button></p>
+                </mat-tab>
+            </form>
+
+
+
+        </mat-tab-group>
+        
