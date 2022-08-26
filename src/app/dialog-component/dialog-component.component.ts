@@ -18,6 +18,7 @@ export class DialogComponentComponent implements OnInit {
   CloseDialog():any{
     this.dialog.close(false);
     
+    
   }
 
 }

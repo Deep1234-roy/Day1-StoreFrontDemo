@@ -16,6 +16,7 @@ import { IndexComponent } from './index/index.component';
 import { FormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponentComponent } from './dialog-component/dialog-component.component';
+import {  HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,7 @@ import { DialogComponentComponent } from './dialog-component/dialog-component.co
     BrowserAnimationsModule,
     MatButtonModule,MatTabsModule,BrowserAnimationsModule,MatFormFieldModule,
     MatInputModule,MatDividerModule,MaterialExampleModule,FormsModule,NgbModule,
-    MatDialogModule
+    MatDialogModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

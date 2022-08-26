@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogComponentComponent } from '../dialog-component/dialog-component.component';
+import {supportFormDropDown} from "../../assets/constants";
 import {
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { ProductsService } from '../services/products.service';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -13,45 +15,22 @@ import {
 export class IndexComponent implements OnInit {
 
   matDialogRef: MatDialogRef<DialogComponentComponent> | undefined;
+  productDetails: any;
+  categorizedProducts: any;
+  index=0;
+  DropDownList:any;
+  issueType:any;
+  description:any;
+  constructor(private matDialog: MatDialog, private productService:ProductsService) { }
 
-  constructor(private matDialog: MatDialog) { }
-
-  NavigateData = {
-    category: '--Select an issue type--',
-    description: '',
-
+  getProductDetails() {
+    this.productService.getAllProductsApps().subscribe((res) => {
+      this.productDetails = res;
+      this.categorizedProducts =
+        this.productDetails['results'][0].productDetailsList;
+    });
   }
 
-  FindItData = {
-    category: '--Select an issue type--',
-    description: '',
-
-  }
-
-  ManageItData = {
-    category: '--Select an issue type--',
-    description: '',
-
-  }
-  selectedIssueType = '';
-
-  Navigatecategories = [
-    { label: '--Select an issue type--', value: 'default' },
-    { label: 'Enquiry / Help', value: 'inquiry' },
-    { label: 'Navigate Issue', value: 'navigateissue' },
-    { label: 'Other - Please Explain', value: 'others' },]
-
-  FindItcategories = [
-    { label: '--Select an issue type--', value: 'default' },
-    { label: 'Enquiry / Help', value: 'inquiry' },
-    { label: 'FindIt Issue', value: 'finditissue' },
-    { label: 'Other - Please Explain', value: 'others' },]
-
-  ManageItcategories = [
-    { label: '--Select an issue type--', value: 'default' },
-    { label: 'Enquiry / Help', value: 'inquiry' },
-    { label: 'ManageIt Issue', value: 'manageitissue' },
-    { label: 'Other - Please Explain', value: 'others' },]
 
   OpenModal() {
     this.matDialogRef = this.matDialog.open(DialogComponentComponent, {
@@ -62,60 +41,33 @@ export class IndexComponent implements OnInit {
   }
 
   onTabChange(): any {
-    this.NavigateData.category = "--Select an issue type--";
-    this.NavigateData.description = "";
-    this.FindItData.category = "--Select an issue type--";
-    this.FindItData.description = "";
-    this.ManageItData.category = "--Select an issue type--";
-    this.ManageItData.description = "";
+    this.issueType='';
+    this.description='';
 
   }
 
   ngOnInit(): void {
+    this.getProductDetails();
+    this.DropDownList=supportFormDropDown;
   }
 
   openDialogModal(): any {
     console.log("A Modal is opening!!");
     this.OpenModal();
+    this.issueType='';
 
 
   }
-  disableNavigateSubmitForm(): any {
-    if (this.NavigateData.category == "--Select an issue type--") {
+  disableSubmitForm(): any {
+    if (!this.issueType) {
       return true;
-    } else if (this.NavigateData.category == "Other - Please Explain") {
-      if (!this.NavigateData.description) {
+    }else if(this.issueType == 'others'){
+      if(!this.description){
         return true;
       }
     }
     return false;
   }
-
-  disableFindItSubmitForm(): any {
-    if (this.FindItData.category == "--Select an issue type--") {
-      return true;
-    } else if (this.FindItData.category == "Other - Please Explain") {
-      if (!this.FindItData.description) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  disableManageItSubmitForm(): any {
-    if (this.ManageItData.category == "--Select an issue type--") {
-      return true;
-    } else if (this.ManageItData.category == "Other - Please Explain") {
-      if (!this.ManageItData.description) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-
-
-
   supportTicketName = "Create a Support Ticket";
 
 }
